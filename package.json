@@ -1,0 +1,26 @@
+{
+  "name": "exambranch",
+  "version": "1.0.0",
+  "description": "\"# exambranch\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalpanibhagya/exambranch.git"
+  },
+  "keywords": [
+    "MEAN",
+    "Stack"
+  ],
+  "author": "Kalpani Ranasinghe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kalpanibhagya/exambranch/issues"
+  },
+  "homepage": "https://github.com/kalpanibhagya/exambranch#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
