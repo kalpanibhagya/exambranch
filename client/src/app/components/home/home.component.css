@@ -1,0 +1,14 @@
+.img-rounded {
+    height: 100px;
+    width: 110px;
+}
+
+.jumbotron {
+    padding: 10px;
+    margin: 10px;
+}
+
+.thumbnail {
+    padding: 10px;
+    padding-top: 20px
+}

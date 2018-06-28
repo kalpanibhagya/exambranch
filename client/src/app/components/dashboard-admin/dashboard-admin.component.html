@@ -1,0 +1,151 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-md-10 col-sm-offset-1">
+        <div class="media">
+          <div class="media-left media-top">
+            <a href="#">
+              <img class="media-object" src="../assets/UCSC_logo.png" alt="UCSC_logo">
+            </a>
+          </div>
+          <div class="media-body">
+            <h2 class="media-heading"><strong>University of Colombo School of Computing</strong></h2>
+            <p class="lead">Welcome to the Exam Registration System for UCSC students</p>
+          </div>
+        </div>
+    </div>
+  </div> 
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"> 
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a data-toggle="pill" href="#updates">Updates</a></li> 
+                        <li ><a data-toggle="pill" href="#profile">Profile</a></li>                                            
+                        <li><a data-toggle="pill" href="#exams">All Exams</a></li>
+                        <li><a data-toggle="pill" href="#rep_exams">Repeat Forms Responses</a></li>
+                        <li><a data-toggle="pill" href="#users">Users</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            
+        <div class="col-md-8">
+            <div class="tab-content">
+                <div id="updates" class="tab-pane fade in active">
+                    <app-updates></app-updates>
+                </div>
+                <div id="profile" class="tab-pane fade">
+                    <app-profile></app-profile>
+                </div>
+                        
+                <div id="exams" class="tab-pane fade">
+                    <h3>HOME</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div id="rep_exams" class="tab-pane fade">
+                    <h3>Menu 1</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div id="users" class="tab-pane fade">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                    
+                                            <table id="myTable" class=" table order-list">
+                                            <thead>
+                                                <tr>
+                                                    <td>Subject Code</td>
+                                                    <td>Subject Name</td>
+                                                    <td>Grade in 1st Attempt</td>
+                                                    <td>Grade in 2nd Attempt</td>
+                                                    <td>Grade in 3rd Attempt</td>
+                                                    <td>Action</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-sm-2">
+                                                        <input type="text" name="code" class="form-control" />
+                                                    </td>
+                                                    <td class="col-sm-7">
+                                                        <input type="text" name="name"  class="form-control"/>
+                                                    </td>
+                                                    <td class="col-sm-1">
+                                                        <input type="text" name="attempt1"  class="form-control"/>
+                                                    </td>
+                                                    <td class="col-sm-1">
+                                                        <input type="text" name="attempt1"  class="form-control"/>
+                                                    </td>
+                                                    <td class="col-sm-1">
+                                                        <input type="text" name="attempt1"  class="form-control"/>
+                                                    </td>
+                                                    <td class="col-sm-2"><a class="deleteRow"></a>
+                                        
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="5" style="text-align: left;">
+                                                        <input type="button" class="btn btn-lg btn-block " id="addrow" value="Add Row" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        
+                            </div>
+                        </div>
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        $(document).ready(function () {
+        var counter = 0;
+    
+        $("#addrow").on("click", function () {
+            var newRow = $("<tr>");
+            var cols = "";
+    
+            cols += '<td><input type="text" class="form-control" name="name' + counter + '"/></td>';
+            cols += '<td><input type="text" class="form-control" name="mail' + counter + '"/></td>';
+            cols += '<td><input type="text" class="form-control" name="phone' + counter + '"/></td>';
+    
+            cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+            newRow.append(cols);
+            $("table.order-list").append(newRow);
+            counter++;
+        });
+    
+    
+    
+        $("table.order-list").on("click", ".ibtnDel", function (event) {
+            $(this).closest("tr").remove();       
+            counter -= 1
+        });
+    
+    
+    });
+    
+    
+    
+    function calculateRow(row) {
+        var price = +row.find('input[name^="price"]').val();
+    
+    }
+    
+    function calculateGrandTotal() {
+        var grandTotal = 0;
+        $("table.order-list").find('input[name^="price"]').each(function () {
+            grandTotal += +$(this).val();
+        });
+        $("#grandtotal").text(grandTotal.toFixed(2));
+    }
+    </script>

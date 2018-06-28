@@ -1,0 +1,14 @@
+.panel-body {
+    padding: 40px;
+}
+
+.panel {
+    margin-top: 30px;
+    text-align: center;
+    align-self: center;
+}
+
+#username {
+    text-align: right;
+}
+

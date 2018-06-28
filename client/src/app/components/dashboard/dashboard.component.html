@@ -1,0 +1,204 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"> 
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a data-toggle="pill" href="#dashboard">Dashboard</a></li> 
+                        <li ><a data-toggle="pill" href="#profile">Profile</a></li>                                            
+                        <li><a data-toggle="pill" href="#exams">All Exams</a></li>
+                        <li><a data-toggle="pill" href="#reg_exams">Registered Exams</a></li>
+                        <li><a data-toggle="pill" href="#rep_exams">Repeat Forms Submission</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            
+        <div class="col-md-8">
+            <div class="tab-content">
+                    <div id="dashboard" class="tab-pane fade in active">
+                        <h3>DASHBOARD</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                <div id="profile" class="tab-pane fade">
+                    
+                    <div class="panel panel-default">
+                                    
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-2 col-lg-2 hidden-xs hidden-sm">
+                                                <img class="img-circle" src="../assets/avatar.png" alt="User Pic">
+                                            </div>
+                                            
+                                            
+                                            <div class=" col-md-10 col-lg-10 hidden-xs hidden-sm">
+                                                
+                                                <table class="table table-user-information">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>User level:</td>
+                                                        <td>Student</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Undergraduate/ Postgraduate</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Name of the Degree program</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Username (Registration Number)</td>
+                                                        <td>{{ username }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Index Number</td>
+                                                        <td></td>
+                                                        </tr>
+                                                    
+                                                    <tr>
+                                                        <td>Gender</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Name with Initials</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Full Name</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Contact Number</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email</td>
+                                                        <td>{{ email }}</td>
+                                                    </tr>
+                                                </tbody>
+                                                </table>
+                                                <span class="pull-right">
+                                                    <button class="btn btn-sm btn-primary" type="button" data-toggle="tooltip" data-original-title="Edit profile"><i class="glyphicon glyphicon-edit"></i></button>
+                        
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        
+                <div id="exams" class="tab-pane fade">
+                    <h3>HOME</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div id="reg_exams" class="tab-pane fade">
+                    <h3>Menu 1</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div id="rep_exams" class="tab-pane fade">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                    
+                                            <table id="myTable" class=" table order-list">
+                                            <thead>
+                                                <tr>
+                                                    <td>Subject Code</td>
+                                                    <td>Subject Name</td>
+                                                    <td>Grade in 1st Attempt</td>
+                                                    <td>Grade in 2nd Attempt</td>
+                                                    <td>Grade in 3rd Attempt</td>
+                                                    <td>Action</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-sm-2">
+                                                        <input type="text" name="code" class="form-control" />
+                                                    </td>
+                                                    <td class="col-sm-7">
+                                                        <input type="text" name="name"  class="form-control"/>
+                                                    </td>
+                                                    <td class="col-sm-1">
+                                                        <input type="text" name="attempt1"  class="form-control"/>
+                                                    </td>
+                                                    <td class="col-sm-1">
+                                                        <input type="text" name="attempt1"  class="form-control"/>
+                                                    </td>
+                                                    <td class="col-sm-1">
+                                                        <input type="text" name="attempt1"  class="form-control"/>
+                                                    </td>
+                                                    <td class="col-sm-2"><a class="deleteRow"></a>
+                                        
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="5" style="text-align: left;">
+                                                        <input type="button" class="btn btn-lg btn-block " id="addrow" value="Add Row" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <p>Candidates repeating the examination shall pay the exam fee at any Branch of the People's Bank to the credit of the UCSC Account No. 086-1-001-2-1190316, take a clear picture of it and upload the receipt.</p>
+                                        <div class="form-group">
+                                            <label for="exampleInputFile">File input</label>
+                                            <input type="file" id="exampleInputFile">
+                                            <p class="help-block">Upload the image of the receipt here.</p>
+                                        </div>
+                            </div>
+                        </div>
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        $(document).ready(function () {
+        var counter = 0;
+    
+        $("#addrow").on("click", function () {
+            var newRow = $("<tr>");
+            var cols = "";
+    
+            cols += '<td><input type="text" class="form-control" name="name' + counter + '"/></td>';
+            cols += '<td><input type="text" class="form-control" name="mail' + counter + '"/></td>';
+            cols += '<td><input type="text" class="form-control" name="phone' + counter + '"/></td>';
+    
+            cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+            newRow.append(cols);
+            $("table.order-list").append(newRow);
+            counter++;
+        });
+    
+    
+    
+        $("table.order-list").on("click", ".ibtnDel", function (event) {
+            $(this).closest("tr").remove();       
+            counter -= 1
+        });
+    
+    
+    });
+    
+    
+    
+    function calculateRow(row) {
+        var price = +row.find('input[name^="price"]').val();
+    
+    }
+    
+    function calculateGrandTotal() {
+        var grandTotal = 0;
+        $("table.order-list").find('input[name^="price"]').each(function () {
+            grandTotal += +$(this).val();
+        });
+        $("#grandtotal").text(grandTotal.toFixed(2));
+    }
+    </script>
