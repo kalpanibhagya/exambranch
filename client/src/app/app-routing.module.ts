@@ -9,6 +9,11 @@ import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
 import { UpdatesComponent } from './components/updates/updates.component';
+import { ExamsComponent } from './components/exams/exams.component';
+import {RepeatersComponent } from './components/repeaters/repeaters.component';
+import { UsersComponent } from './components/users/users.component';
+import { UndergraduateProfileComponent } from './components/undergraduate-profile/undergraduate-profile.component';
+import { RepeatFormComponent } from './components/repeat-form/repeat-form.component';
 
 // Our Array of Angular 2 Routes
 const appRoutes: Routes = [
@@ -19,6 +24,21 @@ const appRoutes: Routes = [
   {
     path: 'admindashboard',
     component: DashboardAdminComponent, // Dashboard Route,
+    canActivate: [AuthGuard] // User must be logged in to view this route
+  },
+  {
+    path: 'exams',
+    component: ExamsComponent, // Dashboard Route,
+    canActivate: [AuthGuard] // User must be logged in to view this route
+  },
+  {
+    path: 'repeaters',
+    component: RepeatersComponent, // Dashboard Route,
+    canActivate: [AuthGuard] // User must be logged in to view this route
+  },
+  {
+    path: 'users',
+    component: UsersComponent, // Dashboard Route,
     canActivate: [AuthGuard] // User must be logged in to view this route
   },
   {
@@ -44,6 +64,16 @@ const appRoutes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent, // Profile Route
+    canActivate: [AuthGuard] // User must be logged in to view this route
+  },
+  {
+    path: 'u_profile',
+    component: UndergraduateProfileComponent, // Profile Route
+    canActivate: [AuthGuard] // User must be logged in to view this route
+  },
+  {
+    path: 'repeat_form',
+    component: RepeatFormComponent, // Profile Route
     canActivate: [AuthGuard] // User must be logged in to view this route
   },
   { path: '**', component: HomeComponent } // "Catch-All" Route

@@ -42,63 +42,13 @@
                 </div>
                         
                 <div id="exams" class="tab-pane fade">
-                    <h3>HOME</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <app-exams></app-exams>
                 </div>
                 <div id="rep_exams" class="tab-pane fade">
-                    <h3>Menu 1</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  <app-repeaters></app-repeaters>
                 </div>
                 <div id="users" class="tab-pane fade">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                    
-                                            <table id="myTable" class=" table order-list">
-                                            <thead>
-                                                <tr>
-                                                    <td>Subject Code</td>
-                                                    <td>Subject Name</td>
-                                                    <td>Grade in 1st Attempt</td>
-                                                    <td>Grade in 2nd Attempt</td>
-                                                    <td>Grade in 3rd Attempt</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="col-sm-2">
-                                                        <input type="text" name="code" class="form-control" />
-                                                    </td>
-                                                    <td class="col-sm-7">
-                                                        <input type="text" name="name"  class="form-control"/>
-                                                    </td>
-                                                    <td class="col-sm-1">
-                                                        <input type="text" name="attempt1"  class="form-control"/>
-                                                    </td>
-                                                    <td class="col-sm-1">
-                                                        <input type="text" name="attempt1"  class="form-control"/>
-                                                    </td>
-                                                    <td class="col-sm-1">
-                                                        <input type="text" name="attempt1"  class="form-control"/>
-                                                    </td>
-                                                    <td class="col-sm-2"><a class="deleteRow"></a>
-                                        
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <td colspan="5" style="text-align: left;">
-                                                        <input type="button" class="btn btn-lg btn-block " id="addrow" value="Add Row" />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                        
-                            </div>
-                        </div>
+                  <app-users></app-users>
                 </div>
                     
             </div>
