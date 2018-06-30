@@ -1,2 +1,156 @@
-<h3>Updates</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-10 col-sm-offset-1">
+            <div class="media">
+            <div class="media-left media-top">
+                <a href="#">
+                <img class="media-object" src="../assets/UCSC_logo.png" alt="UCSC_logo">
+                </a>
+            </div>
+            <div class="media-body">
+                <h2 class="media-heading"><strong>University of Colombo School of Computing</strong></h2>
+                <p class="lead">Welcome to the Exam Registration System for UCSC students</p>
+
+            
+            </div>
+            </div>
+
+            <div class="text-center" *ngIf="username === 'admin'">
+                <a *ngIf="authService.loggedIn()" routerLink="/repeaters" class="btn btn-primary">Repeat Forms</a>
+                <a *ngIf="authService.loggedIn()" routerLink="/users" class="btn btn-primary">Students</a>
+            </div>
+            <div class="text-center" *ngIf="!(username === 'admin')">
+                <a *ngIf="authService.loggedIn()" routerLink="/repeat_form" class="btn btn-primary">Repeat Form Submission</a>
+                <a *ngIf="authService.loggedIn()"  class="btn btn-primary">My Registered Exams</a>
+            </div>
+
+        </div>
+    </div> 
+</div>
+
+<div class="row">
+
+<div class="col-md-8">
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+<!-- Custom Success/Error Message -->
+<div class="row show-hide-message" *ngIf="message && newPost">
+    <div [ngClass]="messageClass">
+        {{ message }}
+    </div>
+</div>
+
+
+  <div *ngIf="username === 'admin'">
+    <!-- New Post Button -->
+  <button type="button" name="button" class="btn btn-primary" *ngIf="!newPost" (click)="newForm()">New Post</button>
+  <!-- Reload Button -->
+<button [disabled]="loadingBlogs" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadBlogs()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Reload</button>
+
+   
+  </div>
+
+  <!-- New Update Form -->
+<form [formGroup]="form" name="updateForm" (submit)="onSubmit()" *ngIf="newPost">
+        <!-- Title Input -->
+        <div class="form-group">
+          <label for="title">Title</label>
+          <div [ngClass]="{'has-success': form.controls.title.valid, 'has-error': form.controls.title.dirty && form.controls.title.errors}">
+            <input type="text" name="title" class="form-control" placeholder="*Update Title" autocomplete="off" formControlName="title" />
+            <ul class="help-block">
+              <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.required">This field is required.</li>
+              <li *ngIf="(form.controls.title.dirty && form.controls.title.errors?.minlength) || (form.controls.title.dirty && form.controls.title.errors?.maxlength)">Max length: 50, Min length: 5</li>
+              <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.alphaNumericValidation">Must be a letter or number</li>
+            </ul>
+          </div>
+        </div>
+      
+        <!-- Body Input -->
+        <div class="form-group">
+          <label for="body">Body</label>
+          <div [ngClass]="{'has-success': form.controls.body.valid, 'has-error': form.controls.body.dirty && form.controls.body.errors}">
+            <textarea name="body" rows="8" cols="80" placeholder="*Body" class="form-control" formControlName="body"></textarea>
+            <ul class="help-block">
+              <li *ngIf="form.controls.body.dirty && form.controls.body.errors?.required">This field is required.</li>
+              <li *ngIf="(form.controls.body.dirty && form.controls.body.errors?.minlength) || (form.controls.body.dirty && form.controls.body.errors?.maxlength)">Max length: 500, Min length: 5</li>
+            </ul>
+          </div>
+        </div>
+      
+        <!-- Go Back Button -->
+        <button [disabled]="processing" type="button" name="button" (click)="goBack()" class="btn btn-warning">Go Back</button>
+        <!-- Submit Button -->
+        <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Submit</button>
+      
+      </form>
+      <!-- New Update Form -->
+      
+
+  <br/>
+  <!-- Panel Start -->
+<div *ngIf="!newPost">
+        <!-- Panel Outer Layer -->
+        <div class="panel panel-primary" *ngFor="let update of updates">
+            
+                <!-- Panel Title -->
+                <div class="panel-heading">
+                  <h3 class="panel-title">{{ update.title }}</h3>
+                </div>
+            
+                <!-- Panel Body -->
+                <div class="panel-body">
+                  {{ update.body }}
+                </div>
+      
+          <!-- Panel Footer Start -->
+          <div class="panel-footer">
+            <strong>Posted by: </strong>{{ update.createdBy }}
+            <br />
+            <strong>Date: </strong>{{ update.createdAt | date:'MMM dd, yyyy' }}
+            <br />
+      
+            <!-- Edit Button -->
+            <a [routerLink]="['/edit-update/', update._id]" *ngIf="username === update.createdBy"><button type="button" name="button" class="btn btn-sm btn-info">Edit</button></a>
+            <!-- Delete Button -->
+            <a [routerLink]="['/delete-update/', update._id]" *ngIf="username === update.createdBy"><button type="button" name="button" class="btn btn-sm btn-danger">Delete</button></a>
+      
+            
+      
+          </div>
+          <!-- Panel Footer End -->
+      
+          <!-- Post Comment Box: Start -->
+          <ul class="list-group">
+            <li class="list-group-item">
+              <button type="button" name="button" class="btn btn-sm btn-danger" (click)="draftComment()">Post Comment</button>
+              <br />
+              <!-- <form>
+                <textarea name="comment" rows="10" cols="30" class="form-control"></textarea>
+                <button type="button" name="button" class="btn btn-sm btn-info">Submit Post</button>
+                <button type="button" name="button" class="btn btn-sm btn-danger">Cancel</button>
+              </form> -->
+            </li>
+          </ul>
+          <!-- Post Comment Box: End -->
+      
+        </div>
+        <!-- Panel Outer Layer -->
+</div>
+<!-- Panel End -->
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+    <div *ngIf="username === 'admin'">
+        <app-profile></app-profile>
+      </div>
+      
+      <div *ngIf="username !== 'admin'">
+          <app-undergraduate-profile></app-undergraduate-profile>
+      </div>
+</div>
+</div>

@@ -52,3 +52,9 @@
                 </div>
     </div>
 </div>
+
+<div class="text-center" *ngIf="username === 'admin'">
+    <a *ngIf="authService.loggedIn()" routerLink="/repeaters" class="btn btn-primary">Repeaters</a>   
+</div>
+
+<br/>

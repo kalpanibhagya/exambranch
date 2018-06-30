@@ -14,5 +14,5 @@
 .img-circle {
     height: 80px;
     width: 80px;
-    position: center;
+    align-content: center;
 }

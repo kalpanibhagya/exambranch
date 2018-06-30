@@ -10,7 +10,7 @@ import { NotAuthGuard } from './guards/notAuth.guard';
 import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
 import { UpdatesComponent } from './components/updates/updates.component';
 import { ExamsComponent } from './components/exams/exams.component';
-import {RepeatersComponent } from './components/repeaters/repeaters.component';
+import { RepeatersComponent } from './components/repeaters/repeaters.component';
 import { UsersComponent } from './components/users/users.component';
 import { UndergraduateProfileComponent } from './components/undergraduate-profile/undergraduate-profile.component';
 import { RepeatFormComponent } from './components/repeat-form/repeat-form.component';
@@ -48,8 +48,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'updates',
-    component: UpdatesComponent, // Dashboard Route,
-    canActivate: [AuthGuard] // User must be logged in to view this route
+    component: UpdatesComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path: 'register',

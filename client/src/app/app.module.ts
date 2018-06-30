@@ -9,6 +9,9 @@ import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
+import { UpdateService } from './services/update.service';
+import { ExamService } from './services/exam.service';
+import { UserService} from './services/user.service';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -50,7 +53,7 @@ import { RepeatFormComponent } from './components/repeat-form/repeat-form.compon
     AppRoutingModule,
    // FlashMessagesModule.forRoot(),
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard],
+  providers: [AuthService, AuthGuard, NotAuthGuard, UpdateService, ExamService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
