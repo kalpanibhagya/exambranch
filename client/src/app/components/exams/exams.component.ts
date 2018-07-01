@@ -72,7 +72,7 @@ export class ExamsComponent implements OnInit {
 
   reloadExams() {
     this.loadingExams = true;
-    //get all exams
+    this.getAllExams();
     setTimeout(() => {
       this.loadingExams = false; // Release button lock after four seconds
     }, 4000);
@@ -100,7 +100,7 @@ export class ExamsComponent implements OnInit {
     } else {
       this.messageClass = 'alert alert-success'; // Return success class
       this.message = data.message; // Return success message
-      //this.getAllExams();
+      this.getAllExams();
       // Clear form data after two seconds
       setTimeout(() => {
         this.newPost = false; // Hide form
@@ -118,13 +118,13 @@ export class ExamsComponent implements OnInit {
   goBack() {
     window.location.reload(); // Clear all variable states
   }
-/*
+
   getAllExams() {
     // Function to GET all blogs from database
     this.examService.getAllExams().subscribe(data => {
       this.exams = data.exams; // Assign array to use in HTML
     });
-  }*/
+  }
 
 
   ngOnInit() {
@@ -134,7 +134,7 @@ export class ExamsComponent implements OnInit {
       this.username = profile.user.username; // Used when creating new exam posts and comments
     });
 
-    //this.getAllExams();
+    this.getAllExams();
   }
 
 }

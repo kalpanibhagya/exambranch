@@ -58,7 +58,7 @@ module.exports = (router) => {
 
   /* ===============================================================
      GET ALL EXAMS
-  =============================================================== 
+  =============================================================== */
   router.get('/allExams', (req, res) => {
     // Search database for all exam posts
     Exam.find({}, (err, exams) => {
@@ -73,8 +73,8 @@ module.exports = (router) => {
           res.json({ success: true, exams: exams }); // Return success and exams array
         }
       }
-    })
-  });*/
+    }).sort({ '_id': -1 }); // Sort exams from newest to oldest
+  });
 
 
 

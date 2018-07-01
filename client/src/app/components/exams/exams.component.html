@@ -57,38 +57,38 @@
       <!-- Panel Start -->
       <div *ngIf="!newPost">
         <!-- Panel Outer Layer -->
-        <div class="panel panel-default">
+        <div class="panel panel-default" *ngFor="let exam of exams">
             
                 <!-- Panel Title -->
                 <div class="panel-heading">
-                  <h3 class="panel-title">Exam Code</h3>
+                  <h3 class="panel-title">{{ exam.subject_code }}</h3>
                 </div>
             
                 <!-- Panel Body -->
                 <div class="panel-body">
-                  Exam Name
+                  {{ exam.subject_name }}
                 </div>
 
                 <!-- Panel Footer Start -->
                 <div class="panel-footer">
-                  <strong>Posted by: </strong>Admin
+                  <strong>Posted by: </strong>{{ exam.createdBy }}
                   <br />
-                  <strong>Date: </strong>2018-09-09
+                  <strong>Date: </strong>{{ exam.createdAt | date:'MMM dd, yyyy' }}
                   <br />
-                  <div>
-                    <strong>Registrations: </strong>21
+                  <div *ngIf="username === exam.createdBy">
+                    <strong>Registrations: </strong>{{ exam.registrations }}
                   </div>
                   <br/>
 
                   <!-- Edit Button -->
-                  <a herf = "#"><button type="button" name="button" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit">&nbsp;</span>Edit</button></a>
+                  <a [routerLink]="['/edit-exam/', exam._id]" *ngIf="username === exam.createdBy"><button type="button" name="button" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit">&nbsp;</span>Edit</button></a>
                   <!-- Delete Button -->
-                  <a herf = "#"><button type="button" name="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button></a>
+                  <a [routerLink]="['/delete-exam/', exam._id]" *ngIf="username === exam.createdBy"><button type="button" name="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button></a>
 
                   <!-- Registrations Dropdown  -->
                   <div class="dropdown">
                     <!-- Registration Button -->
-                    <button type="button" name="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-flag">&nbsp;</span>Registrations: 21</button>
+                    <button type="button" name="button" class="btn btn-sm btn-success" *ngIf="username !== exam.createdBy"><span class="glyphicon glyphicon-flag">&nbsp;</span>Registrations: 21</button>
                     <!-- Dropdown Menu Items -->
                     <div class="dropdown-content">
                       <a href="#">gugui3z24</a>

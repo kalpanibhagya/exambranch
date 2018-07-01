@@ -31,10 +31,10 @@ export class ExamService {
     return this.http.post(this.domain + 'exams/newExam', exam, this.options).map(res => res.json());
   }
 
-/*
+
   getAllExams() {
     this.createAuthenticationHeaders(); // Create headers
     return this.http.get(this.domain + 'exams/allExams', this.options).map(res => res.json());
   }
-*/
+
 }
