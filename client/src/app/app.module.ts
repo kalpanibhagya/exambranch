@@ -10,7 +10,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { UpdateService } from './services/update.service';
-//import { ExamService } from './services/exam.service';
+import { ExamService } from './services/exam.service';
 import { UserService} from './services/user.service';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -54,7 +54,7 @@ import { ExamsComponent } from './components/exams/exams.component';
     AppRoutingModule,
    // FlashMessagesModule.forRoot(),
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard, UpdateService, UserService],
+  providers: [AuthService, AuthGuard, NotAuthGuard, UpdateService, UserService, ExamService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
