@@ -1,90 +1,71 @@
+<div class="panel panel-default">
+  <div class="panel-body">
 
-    <div class="panel panel-default">
-        <div class="panel-body">
-    
-    <!-- Custom Success/Error Message -->
-    <div class="row show-hide-message" *ngIf="message && newPost">
+      <!-- Custom Success/Error Message 
+      <div class="row show-hide-message" *ngIf="message && newPost">
         <div [ngClass]="messageClass">
             {{ message }}
         </div>
-    </div>
-    
-    
-      <div *ngIf="username === 'admin'">
-        <!-- New Post Button -->
-      <button type="button" name="button" class="btn btn-primary" *ngIf="!newPost" (click)="newForm()">New Exam</button>
-      </div>
-    
-      <!-- New Exam Form -->
-    <form [formGroup]="form" name="examForm" (submit)="onSubmit()" *ngIf="newPost">
-            <!-- Title Input -->
-            <div class="form-group">
-              <label for="title">Title</label>
-              <div [ngClass]="{'has-success': form.controls.title.valid, 'has-error': form.controls.title.dirty && form.controls.title.errors}">
-                <input type="text" name="subject_name" class="form-control" placeholder="*Exam Title" autocomplete="off" formControlName="title" />
-                <ul class="help-block">
-                  <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.required">This field is required.</li>
-                  <li *ngIf="(form.controls.title.dirty && form.controls.title.errors?.minlength) || (form.controls.title.dirty && form.controls.title.errors?.maxlength)">Max length: 50, Min length: 5</li>
-                  <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.alphaNumericValidation">Must be a letter or number</li>
-                </ul>
-              </div>
-            </div>
-          
-            <!-- Body Input -->
-            <div class="form-group">
-              <label for="body">Body</label>
-              <div [ngClass]="{'has-success': form.controls.body.valid, 'has-error': form.controls.body.dirty && form.controls.body.errors}">
-                <textarea name="body_details" rows="8" cols="80" placeholder="*Body" class="form-control" formControlName="body"></textarea>
-                <ul class="help-block">
-                  <li *ngIf="form.controls.body.dirty && form.controls.body.errors?.required">This field is required.</li>
-                  <li *ngIf="(form.controls.body.dirty && form.controls.body.errors?.minlength) || (form.controls.body.dirty && form.controls.body.errors?.maxlength)">Max length: 500, Min length: 5</li>
-                </ul>
-              </div>
-            </div>
-          
-            <!-- Go Back Button -->
-            <button [disabled]="processing" type="button" name="button" (click)="goBack()" class="btn btn-warning">Go Back</button>
-            <!-- Submit Button -->
-            <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Submit</button>
-          
-          </form>
-          <!-- New Exam Form -->
-          
-    
+      </div>-->
+
+      <button type="button" name="button" class="btn btn-primary" *ngIf="!newExam" (click)="newExamForm()"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Post</button>        
+      <button [disabled]="loadingExams" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadExams()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Reload</button>        
+      
       <br/>
+      <br/>
+
       <!-- Panel Start -->
-    <div *ngIf="!newPost">
-            <!-- Panel Outer Layer -->
-            <div class="panel panel-primary" *ngFor="let exam of exams">
-                
-                    <!-- Panel Title -->
-                    <div class="panel-heading">
-                      <h3 class="panel-title">{{ exam.title }}</h3>
+      <div *ngIf="!newPost">
+        <!-- Panel Outer Layer -->
+        <div class="panel panel-default">
+            
+                <!-- Panel Title -->
+                <div class="panel-heading">
+                  <h3 class="panel-title">Exam Code</h3>
+                </div>
+            
+                <!-- Panel Body -->
+                <div class="panel-body">
+                  Exam Name
+                </div>
+
+                <!-- Panel Footer Start -->
+                <div class="panel-footer">
+                  <strong>Posted by: </strong>Admin
+                  <br />
+                  <strong>Date: </strong>2018-09-09
+                  <br />
+                  <div>
+                    <strong>Registrations: </strong>21
+                  </div>
+                  <br/>
+
+                  <!-- Edit Button -->
+                  <a herf = "#"><button type="button" name="button" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit">&nbsp;</span>Edit</button></a>
+                  <!-- Delete Button -->
+                  <a herf = "#"><button type="button" name="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button></a>
+
+                  <!-- Registrations Dropdown  -->
+                  <div class="dropdown">
+                    <!-- Registration Button -->
+                    <button type="button" name="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-flag">&nbsp;</span>Registrations: 21</button>
+                    <!-- Dropdown Menu Items -->
+                    <div class="dropdown-content">
+                      <a href="#">gugui3z24</a>
+                      <a href="#">jinder</a>
+                      <a href="#">patel</a>
                     </div>
+                  </div>
+
+                </div>
+                <!-- Panel Footer End -->
+
                 
-                    <!-- Panel Body -->
-                    <div class="panel-body">
-                      {{ exam.body }}
-                    </div>
-          
-              <!-- Panel Footer Start -->
-              <div class="panel-footer">
-                <strong>Posted by: </strong>{{ exam.createdBy }}
-                <br />
-                <strong>Date: </strong>{{ exam.createdAt | date:'MMM dd, yyyy' }}
-                <br />
-          
-                <!-- Edit Button -->
-                <a [routerLink]="['/edit-exam/', exam._id]" *ngIf="username === exam.createdBy"><button type="button" name="button" class="btn btn-sm btn-info">Edit</button></a>
-                <!-- Delete Button -->
-                <a [routerLink]="['/delete-exam/', exam._id]" *ngIf="username === exam.createdBy"><button type="button" name="button" class="btn btn-sm btn-danger">Delete</button></a>
-          
-                
-          
-              </div>
-              <!-- Panel Footer End -->
-    </div>
-    <!-- Panel End -->
-    </div>
-    </div>
-    
+
+        </div>
+        <!-- Panel Outer Layer -->
+      </div>
+<!-- Panel End -->
+
+  </div>
+</div>

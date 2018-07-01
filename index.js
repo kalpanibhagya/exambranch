@@ -9,7 +9,7 @@ const config = require('./config/database'); // Mongoose Config
 const path = require('path'); // NodeJS Package for file paths
 const authentication = require('./routes/authentication')(router); // Import Authentication Routes
 const updates = require('./routes/updates')(router);
-const exams = require('./routes/exams')(router);
+//const exams = require('./routes/exams')(router);
 const users = require('./routes/users')(router);
 const bodyParser = require('body-parser'); // Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 const cors = require('cors');
@@ -31,7 +31,7 @@ app.use(bodyParser.json()); // parse application/json
 app.use(express.static(__dirname + '/client/dist/')); // Provide static directory for frontend
 app.use('/authentication', authentication);
 app.use('/updates', updates);
-app.use('/exams', exams);
+//app.use('/exams', exams);
 app.use('/users', users);
 
 // Connect server to Angular 2 Index.html

@@ -28,8 +28,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'exams',
-    component: ExamsComponent, // Dashboard Route,
-    canActivate: [AuthGuard] // User must be logged in to view this route
+    component: ExamsComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path: 'repeaters',

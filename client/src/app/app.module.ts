@@ -10,7 +10,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { UpdateService } from './services/update.service';
-import { ExamService } from './services/exam.service';
+//import { ExamService } from './services/exam.service';
 import { UserService} from './services/user.service';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -19,11 +19,12 @@ import { NotAuthGuard } from './guards/notAuth.guard';
 import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
 import { UpdatesComponent } from './components/updates/updates.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ExamsComponent } from './components/exams/exams.component';
+//import { ExamsComponent } from './components/exams/exams.component';
 import { RepeatersComponent } from './components/repeaters/repeaters.component';
 import { UsersComponent } from './components/users/users.component';
 import { UndergraduateProfileComponent } from './components/undergraduate-profile/undergraduate-profile.component';
 import { RepeatFormComponent } from './components/repeat-form/repeat-form.component';
+import { ExamsComponent } from './components/exams/exams.component';
 
 //import { FlashMessagesModule } from 'angular2-flash-messages';
 
@@ -40,11 +41,11 @@ import { RepeatFormComponent } from './components/repeat-form/repeat-form.compon
     DashboardAdminComponent,
     UpdatesComponent,
     FooterComponent,
-    ExamsComponent,
     RepeatersComponent,
     UsersComponent,
     UndergraduateProfileComponent,
-    RepeatFormComponent
+    RepeatFormComponent,
+    ExamsComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +54,7 @@ import { RepeatFormComponent } from './components/repeat-form/repeat-form.compon
     AppRoutingModule,
    // FlashMessagesModule.forRoot(),
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard, UpdateService, ExamService, UserService],
+  providers: [AuthService, AuthGuard, NotAuthGuard, UpdateService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
