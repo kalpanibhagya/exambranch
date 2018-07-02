@@ -48,10 +48,13 @@
     <!-- New Post Button -->
   <button type="button" name="button" class="btn btn-primary" *ngIf="!newPost" (click)="newForm()">New Post</button>
   <!-- Reload Button -->
-<button [disabled]="loadingBlogs" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadBlogs()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Reload</button>
 
    
   </div>
+
+  <br/>
+  <button [disabled]="loadingBlogs" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadBlogs()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Reload</button>
+  <br/>  
 
   <!-- New Update Form -->
 <form [formGroup]="form" name="updateForm" (submit)="onSubmit()" *ngIf="newPost">

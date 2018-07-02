@@ -8,7 +8,11 @@
         </div>
       </div>
 
-      <button type="button" name="button" class="btn btn-primary" *ngIf="!newPost" (click)="newExamForm()"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Post</button>        
+      <div *ngIf="username === 'admin'">
+        <button type="button" name="button" class="btn btn-primary" *ngIf="!newPost" (click)="newExamForm()"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Post</button>                
+      </div>
+
+      <br/>
       <button [disabled]="loadingExams" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadExams()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Reload</button>        
       
       <br/>
