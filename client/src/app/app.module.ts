@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,7 @@ import { UsersComponent } from './components/users/users.component';
 import { UndergraduateProfileComponent } from './components/undergraduate-profile/undergraduate-profile.component';
 import { RepeatFormComponent } from './components/repeat-form/repeat-form.component';
 import { ExamsComponent } from './components/exams/exams.component';
+import { EditExamComponent } from './components/exams/edit-exam/edit-exam.component';
 
 //import { FlashMessagesModule } from 'angular2-flash-messages';
 
@@ -45,11 +47,13 @@ import { ExamsComponent } from './components/exams/exams.component';
     UsersComponent,
     UndergraduateProfileComponent,
     RepeatFormComponent,
-    ExamsComponent
+    ExamsComponent,
+    EditExamComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpModule,
     AppRoutingModule,
    // FlashMessagesModule.forRoot(),

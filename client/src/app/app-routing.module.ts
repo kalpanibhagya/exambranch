@@ -10,6 +10,7 @@ import { NotAuthGuard } from './guards/notAuth.guard';
 import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
 import { UpdatesComponent } from './components/updates/updates.component';
 import { ExamsComponent } from './components/exams/exams.component';
+import { EditExamComponent } from './components/exams/edit-exam/edit-exam.component';
 import { RepeatersComponent } from './components/repeaters/repeaters.component';
 import { UsersComponent } from './components/users/users.component';
 import { UndergraduateProfileComponent } from './components/undergraduate-profile/undergraduate-profile.component';
@@ -25,6 +26,11 @@ const appRoutes: Routes = [
     path: 'admindashboard',
     component: DashboardAdminComponent, // Dashboard Route,
     canActivate: [AuthGuard] // User must be logged in to view this route
+  },
+  {
+    path: 'edit-exam/:id',
+    component: EditExamComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path: 'exams',

@@ -37,4 +37,17 @@ export class ExamService {
     return this.http.get(this.domain + 'exams/allExams', this.options).map(res => res.json());
   }
 
+  // Function to get the exam using the id
+  getSingleExam(id) {
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.get(this.domain + 'exams/singleExam/' + id, this.options).map(res => res.json());
+  }
+
+  // Function to edit/update exam post
+  editExam(exam) {
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.put(this.domain + 'exams/updateExam/', exam, this.options).map(res => res.json());
+  }
+
+
 }

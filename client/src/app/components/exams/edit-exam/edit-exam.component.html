@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+<h1 class="page-header">Edit Exam</h1>
+
+<!-- Custom Success/Erro Message -->
+<div class="row show-hide-message" *ngIf="message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+<!-- Edit Exam Form -->
+<form (submit)="updateExamSubmit()" *ngIf="!loading">
+  <!-- subject_code Field -->
+  <div class="form-group">
+    <label for="subject_code">Subject Code</label>
+    <!-- subject_code Input -->
+    <input [disabled]="processing" type="text" name="subject_code" placeholder="*Subject Code" class="form-control" [(ngModel)]="exam.subject_code" />
+  </div>
+
+  <!-- subject_name Field -->
+  <div class="form-group">
+    <label for="subject_name">Subject Name</label>
+    <!-- subject_name Input -->
+    <input [disabled]="processing" type="text" name="subject_name" placeholder="*Subject Name" class="form-control" [(ngModel)]="exam.subject_name" />
+  </div>
+
+  <!-- Delete Button -->
+  <a [routerLink]="['/delete-exam/', exam._id]"><button  [disabled]="processing"  type="button" name="button" class="btn btn-danger">Delete</button></a>
+  <!-- Go Back Button -->
+  <button [disabled]="processing" type="button" name="button" class="btn btn-default" (click)="goBack()">Go Back</button>
+  <!-- Save Changes Button -->
+  <button [disabled]="processing" type="submit" name="save" class="btn btn-success">Save Changes</button>
+
+</form>
+
+</div>
+</div>
