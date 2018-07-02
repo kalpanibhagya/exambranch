@@ -27,6 +27,7 @@ import { UndergraduateProfileComponent } from './components/undergraduate-profil
 import { RepeatFormComponent } from './components/repeat-form/repeat-form.component';
 import { ExamsComponent } from './components/exams/exams.component';
 import { EditExamComponent } from './components/exams/edit-exam/edit-exam.component';
+import { DeleteExamComponent } from './components/exams/delete-exam/delete-exam.component';
 
 //import { FlashMessagesModule } from 'angular2-flash-messages';
 
@@ -48,7 +49,8 @@ import { EditExamComponent } from './components/exams/edit-exam/edit-exam.compon
     UndergraduateProfileComponent,
     RepeatFormComponent,
     ExamsComponent,
-    EditExamComponent
+    EditExamComponent,
+    DeleteExamComponent
   ],
   imports: [
     BrowserModule,

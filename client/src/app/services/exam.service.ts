@@ -49,5 +49,11 @@ export class ExamService {
     return this.http.put(this.domain + 'exams/updateExam/', exam, this.options).map(res => res.json());
   }
 
+  // Function to delete a exam
+  deleteExam(id) {
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.delete(this.domain + 'exams/deleteExam/' + id, this.options).map(res => res.json());
+  }
+
 
 }

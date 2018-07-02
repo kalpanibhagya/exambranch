@@ -152,7 +152,7 @@ module.exports = (router) => {
                     res.json({ success: false, message: 'You are not authorized to edit this exam post.' }); // Return error message
                   } else {
                     exam.subject_code = req.body.subject_code; // Save latest exam subject code
-                    exam.subject_name = req.body.subject_name; // Save latest exaam subject name
+                    exam.subject_name = req.body.subject_name; // Save latest exam subject name
                     exam.save((err) => {
                       if (err) {
                         if (err.errors) {
@@ -162,6 +162,56 @@ module.exports = (router) => {
                         }
                       } else {
                         res.json({ success: true, message: 'Exam Updated!' }); // Return success message
+                      }
+                    });
+                  }
+                }
+              }
+            });
+          }
+        }
+      });
+    }
+  });
+
+    /* ===============================================================
+     DELETE EXAM POST
+  =============================================================== */
+  router.delete('/deleteExam/:id', (req, res) => {
+    // Check if ID was provided in parameters
+    if (!req.params.id) {
+      res.json({ success: false, message: 'No id provided' }); // Return error message
+    } else {
+      // Check if id is found in database
+      Exam.findOne({ _id: req.params.id }, (err, exam) => {
+        // Check if error was found
+        if (err) {
+          res.json({ success: false, message: 'Invalid id' }); // Return error message
+        } else {
+          // Check if exam was found in database
+          if (!exam) {
+            res.json({ success: false, messasge: 'Exam was not found' }); // Return error message
+          } else {
+            // Get info on user who is attempting to delete post
+            User.findOne({ _id: req.decoded.userId }, (err, user) => {
+              // Check if error was found
+              if (err) {
+                res.json({ success: false, message: err }); // Return error message
+              } else {
+                // Check if user's id was found in database
+                if (!user) {
+                  res.json({ success: false, message: 'Unable to authenticate user.' }); // Return error message
+                } else {
+                  // Check if user attempting to delete exam is the same user who originally posted the exam
+                  if (user.username !== exam.createdBy) {
+                    res.json({ success: false, message: 'You are not authorized to delete this exam' }); // Return error message
+                  } else {
+                    // Remove the exam from database
+                    exam.remove((err) => {
+                      if (err) {
+                        res.json({ success: false, message: err }); // Return error message
+                      } else {
+                        res.json({ success: true, message: 'Exam deleted!' }); // Return success message
                       }
                     });
                   }

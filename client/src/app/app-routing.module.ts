@@ -11,6 +11,7 @@ import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-
 import { UpdatesComponent } from './components/updates/updates.component';
 import { ExamsComponent } from './components/exams/exams.component';
 import { EditExamComponent } from './components/exams/edit-exam/edit-exam.component';
+import { DeleteExamComponent } from './components/exams/delete-exam/delete-exam.component';
 import { RepeatersComponent } from './components/repeaters/repeaters.component';
 import { UsersComponent } from './components/users/users.component';
 import { UndergraduateProfileComponent } from './components/undergraduate-profile/undergraduate-profile.component';
@@ -30,6 +31,11 @@ const appRoutes: Routes = [
   {
     path: 'edit-exam/:id',
     component: EditExamComponent, 
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'delete-exam/:id',
+    component: DeleteExamComponent, 
     canActivate: [AuthGuard]
   },
   {
