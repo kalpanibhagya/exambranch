@@ -1,55 +1,96 @@
 <div class="panel panel-default">
     <div class="panel-body">
-                    semeter and year
-                    <table id="myTable" class=" table order-list">
-                    <thead>
-                        <tr>
-                            <td>Subject Code</td>
-                            <td>Subject Name</td>
-                            <td>Grade in 1st Attempt</td>
-                            <td>Grade in 2nd Attempt</td>
-                            <td>Grade in 3rd Attempt</td>
-                            <td>Action</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="col-sm-2">
-                                <input type="text" name="code" class="form-control" />
-                            </td>
-                            <td class="col-sm-7">
-                                <input type="text" name="name"  class="form-control"/>
-                            </td>
-                            <td class="col-sm-1">
-                                <input type="text" name="attempt1"  class="form-control"/>
-                            </td>
-                            <td class="col-sm-1">
-                                <input type="text" name="attempt1"  class="form-control"/>
-                            </td>
-                            <td class="col-sm-1">
-                                <input type="text" name="attempt1"  class="form-control"/>
-                            </td>
-                            <td class="col-sm-2"><a class="deleteRow"></a>
+        <!--Custom Success/Error Message -->
+      <div class="row show-hide-message" *ngIf="message && newPost">
+            <div [ngClass]="messageClass">
+                {{ message }}
+            </div>
+          </div>
+    
+          <div *ngIf="username !== 'admin'">
+            <button type="button" name="button" class="btn btn-primary" *ngIf="!newPost" (click)="newForm()"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Repeat Form</button>                
+        </div>
+    
+          <br/>
+          
+          
+          <!-- New Repeat Form -->
+          <form [formGroup]="form" name="repeatForm" (submit)="onSubmit()" *ngIf="newPost">
+            <!-- Subject code Input -->
+            <div class="form-group">
+              <label for="subject_code">Subject Code</label>
+              <div [ngClass]="{'has-success': form.controls.subject_code.valid, 'has-error': form.controls.subject_code.dirty && form.controls.subject_code.errors}">
+                <!-- Subject Code Input -->
+                <input type="text" name="subject_code" class="form-control" placeholder="*Subject Code" autocomplete="off" formControlName="subject_code" />
+                <!-- Validation -->
+                <ul class="help-block">
+                  <li *ngIf="form.controls.subject_code.dirty && form.controls.subject_code.errors?.required">This field is required.</li>
+                  <li *ngIf="(form.controls.subject_code.dirty && form.controls.subject_code.errors?.minlength) || (form.controls.subject_code.dirty && form.controls.subject_code.errors?.maxlength)">Max length: 50, Min length: 5</li>
+                  <li *ngIf="form.controls.subject_code.dirty && form.controls.subject_code.errors?.alphaNumericValidation">Must be a letter or number</li>
+                </ul>
+              </div>
+            </div>
+    
+            <!-- Subject Name Input -->
+            <div class="form-group">
+              <label for="subject_name">Subject Name</label>
+              <div [ngClass]="{'has-success': form.controls.subject_name.valid, 'has-error': form.controls.subject_name.dirty && form.controls.subject_name.errors}">
+                <!-- Subject name Input -->
+                <input type="text" name="subject_name" class="form-control" placeholder="*Subject Name" autocomplete="off" formControlName="subject_name" />
+                <!-- Validation -->
+                <ul class="help-block">
+                  <li *ngIf="form.controls.subject_name.dirty && form.controls.subject_name.errors?.required">This field is required.</li>
+                  <li *ngIf="(form.controls.subject_name.dirty && form.controls.subject_name.errors?.minlength) || (form.controls.subject_name.dirty && form.controls.subject_name.errors?.maxlength)">Max length: 50, Min length: 5</li>
+                </ul>
+              </div>
+            </div>
+    
+            <!-- Go Back Button -->
+            <button [disabled]="processing" type="button" name="button" (click)="goBack()" class="btn btn-warning">Go Back</button>
+            <!-- Submit Button -->
+            <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Submit</button>
+    
+          </form>
+          <!-- New Repeat Form -->
+    
+    
+          <!-- Panel Start -->
+          <div *ngIf="!newPost">
+            <div *ngFor="let repeat of repeats">
+            <div class="panel panel-default" *ngIf="username === repeat.createdBy">
                 
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="5" style="text-align: left;">
-                                <input type="button" class="btn btn-lg btn-block " id="addrow" value="Add Row" />
-                            </td>
-                        </tr>
-                        <tr>
-                        </tr>
-                    </tfoot>
-                </table>
-                <p>Candidates repeating the examination shall pay the exam fee at any Branch of the People's Bank to the credit of the UCSC Account No. 086-1-001-2-1190316, take a clear picture of it and upload the receipt.</p>
-                <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <input type="file" id="exampleInputFile">
-                    <p class="help-block">Upload the image of the receipt here.</p>
-                </div>
+                    
+                    <div class="panel-heading">
+                      <h3 class="panel-title">{{ repeat.subject_code }}</h3>
+                    </div>
+                
+                    
+                    <div class="panel-body">
+                      {{ repeat.subject_name }}
+                    </div>
+    
+                    
+                    <div class="panel-footer">
+                      <strong>Posted by: </strong>{{ repeat.createdBy }}
+                      <br />
+                      <strong>Date: </strong>{{ repeat.createdAt | date:'MMM dd, yyyy' }}
+                      <br />
+                    
+                
+    
+                      
+                      <a [routerLink]="['/edit-repeat/', repeat._id]" *ngIf="username === repeat.createdBy"><button type="button" name="button" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit">&nbsp;</span>Edit</button></a>
+                     
+                      <a [routerLink]="['/delete-repeat/', repeat._id]" *ngIf="username === repeat.createdBy"><button type="button" name="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove">&nbsp;</span>Delete</button></a>
+    
+                    </div>
+                    
+                    
+    
+            </div>
+            </div>
+          </div>
+    
     </div>
 </div>
 

@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
+
 @Injectable()
-export class ExamService {
+export class RepeatService {
 
   options;
   domain = this.authService.domain;
@@ -25,40 +26,35 @@ export class ExamService {
     });
   }
 
-  // Function to create a new exam post
-  newExam(exam) {
+  // Function to create a new repeat post
+  newRepeat(repeat) {
     this.createAuthenticationHeaders(); // Create headers
-    return this.http.post(this.domain + 'exams/newExam', exam, this.options).map(res => res.json());
+    return this.http.post(this.domain + 'repeats/newRepeat', repeat, this.options).map(res => res.json());
   }
 
 
-  getAllExams() {
+  getAllRepeats() {
     this.createAuthenticationHeaders(); // Create headers
-    return this.http.get(this.domain + 'exams/allExams', this.options).map(res => res.json());
+    return this.http.get(this.domain + 'repeats/allRepeats', this.options).map(res => res.json());
   }
 
-  // Function to get the exam using the id
-  getSingleExam(id) {
+  // Function to get the repeat using the id
+  getSingleRepeat(id) {
     this.createAuthenticationHeaders(); // Create headers
-    return this.http.get(this.domain + 'exams/singleExam/' + id, this.options).map(res => res.json());
+    return this.http.get(this.domain + 'repeats/singleRepeat/' + id, this.options).map(res => res.json());
   }
 
-  // Function to edit/update exam post
-  editExam(exam) {
+  // Function to edit/update repeat post
+  editRepeat(repeat) {
     this.createAuthenticationHeaders(); // Create headers
-    return this.http.put(this.domain + 'exams/updateExam/', exam, this.options).map(res => res.json());
+    return this.http.put(this.domain + 'repeats/updateRepeat/', repeat, this.options).map(res => res.json());
   }
 
-  // Function to delete a exam
-  deleteExam(id) {
+  // Function to delete a repeat
+  deleteRepeat(id) {
     this.createAuthenticationHeaders(); // Create headers
-    return this.http.delete(this.domain + 'exams/deleteExam/' + id, this.options).map(res => res.json());
+    return this.http.delete(this.domain + 'repeats/deleteRepeat/' + id, this.options).map(res => res.json());
   }
 
-  // Function to register for the exam
-  registerExam(id) {
-    const examData = { id: id };
-    return this.http.put(this.domain + 'exams/registerExam/', examData, this.options).map(res => res.json());
-  }
 
 }

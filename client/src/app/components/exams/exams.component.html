@@ -55,7 +55,7 @@
         <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Submit</button>
 
       </form>
-      <!-- New Blog Form -->
+      <!-- New Exam Form -->
 
 
       <!-- Panel Start -->
@@ -92,12 +92,10 @@
                   <!-- Registrations Dropdown  -->
                   <div class="dropdown">
                     <!-- Registration Button -->
-                    <button type="button" name="button" class="btn btn-sm btn-success" *ngIf="username !== exam.createdBy"><span class="glyphicon glyphicon-flag">&nbsp;</span>Registrations: 21</button>
+                    <button [disabled]="exam.registeredBy.indexOf(username) > -1" type="button" name="button" class="btn btn-sm btn-success" (click)="registerExam(exam._id)"><span class="glyphicon glyphicon-flag">&nbsp;</span>Registrations: {{ exam.registrations }}</button>
                     <!-- Dropdown Menu Items -->
                     <div class="dropdown-content">
-                      <a href="#">gugui3z24</a>
-                      <a href="#">jinder</a>
-                      <a href="#">patel</a>
+                        <a herf="#" *ngFor="let student of exam.registeredBy">{{ student }}</a>
                     </div>
                   </div>
 

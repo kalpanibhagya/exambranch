@@ -224,7 +224,62 @@ module.exports = (router) => {
     }
   });
 
-
+    /* ===============================================================
+     Exam Registration
+  =============================================================== */
+  router.put('/registerExam', (req, res) => {
+    // Check if id was passed provided in request body
+    if (!req.body.id) {
+      res.json({ success: false, message: 'No id was provided.' }); // Return error message
+    } else {
+      // Search the database with id
+      Exam.findOne({ _id: req.body.id }, (err, exam) => {
+        // Check if error was encountered
+        if (err) {
+          res.json({ success: false, message: 'Invalid exam id' }); // Return error message
+        } else {
+          // Check if id matched the id of a exam post in the database
+          if (!exam) {
+            res.json({ success: false, message: 'That exam was not found.' }); // Return error message
+          } else {
+            // Get data from user that is signed in
+            User.findOne({ _id: req.decoded.userId }, (err, user) => {
+              // Check if error was found
+              if (err) {
+                res.json({ success: false, message: 'Something went wrong.' }); // Return error message
+              } else {
+                // Check if id of user in session was found in the database
+                if (!user) {
+                  res.json({ success: false, message: 'Could not authenticate user.' }); // Return error message
+                } else {
+                  // Check if user who click registrations is the same user that originally created the exam post
+                  if (user.username === exam.createdBy) {
+                    res.json({ success: false, messagse: 'Admin cannot register for exams.' }); // Return error message
+                  } else {
+                    // Check if the user who register for the exam has already trys to register
+                    if (exam.registeredBy.includes(user.username)) {
+                      res.json({ success: false, message: 'You have already registered to this exam.' }); // Return error message
+                    } else {
+                      exam.registrations++; // Incriment registrations
+                      exam.registeredBy.push(user.username); // Add registered student's username into array of registeredBy
+                      // Save exam post
+                      exam.save((err) => {
+                        if (err) {
+                          res.json({ success: false, message: 'Something went wrong.' }); // Return error message
+                        } else {
+                          res.json({ success: true, message: 'Successfully Registered!' }); // Return success message
+                        }
+                      });
+                    }
+                  }
+                }
+              }
+            });
+          }
+        }
+      });
+    }
+  });
 
     return router;
 };

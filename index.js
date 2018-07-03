@@ -10,6 +10,7 @@ const path = require('path'); // NodeJS Package for file paths
 const authentication = require('./routes/authentication')(router); // Import Authentication Routes
 const updates = require('./routes/updates')(router);
 const exams = require('./routes/exams')(router);
+const repeats = require('./routes/repeats')(router);
 const users = require('./routes/users')(router);
 const bodyParser = require('body-parser'); // Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 const cors = require('cors');
@@ -32,6 +33,7 @@ app.use(express.static(__dirname + '/client/dist/')); // Provide static director
 app.use('/authentication', authentication);
 app.use('/updates', updates);
 app.use('/exams', exams);
+app.use('/repeats', repeats);
 app.use('/users', users);
 
 // Connect server to Angular 2 Index.html

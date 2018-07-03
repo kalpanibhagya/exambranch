@@ -120,12 +120,19 @@ export class ExamsComponent implements OnInit {
   }
 
   getAllExams() {
-    // Function to GET all blogs from database
+    // Function to GET all exams from database
     this.examService.getAllExams().subscribe(data => {
       this.exams = data.exams; // Assign array to use in HTML
     });
   }
 
+  // Function to register for a exam
+  registerExam(id) {
+    // Service to  register for a exam
+    this.examService.registerExam(id).subscribe(data => {
+      this.getAllExams(); // Refresh exam after registrations
+    });
+  }
 
   ngOnInit() {
 

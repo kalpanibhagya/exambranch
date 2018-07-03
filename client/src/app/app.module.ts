@@ -12,6 +12,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { UpdateService } from './services/update.service';
 import { ExamService } from './services/exam.service';
+import { RepeatService } from './services/repeat.service';
 import { UserService} from './services/user.service';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -60,7 +61,7 @@ import { DeleteExamComponent } from './components/exams/delete-exam/delete-exam.
     AppRoutingModule,
    // FlashMessagesModule.forRoot(),
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard, UpdateService, UserService, ExamService],
+  providers: [AuthService, AuthGuard, NotAuthGuard, UpdateService, UserService, ExamService, RepeatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
