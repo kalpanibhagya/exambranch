@@ -32,6 +32,25 @@ export class UpdateService {
   }
 
 
+  // Function to get the update using the id
+  getSingleUpdate(id) {
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.get(this.domain + 'updates/singleUpdate/' + id, this.options).map(res => res.json());
+  }
+
+  // Function to edit/update update post
+  editUpdate(update) {
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.put(this.domain + 'updates/updateUpdate/', update, this.options).map(res => res.json());
+  }
+
+  // Function to delete a update
+  deleteUpdate(id) {
+    this.createAuthenticationHeaders(); // Create headers
+    return this.http.delete(this.domain + 'updates/deleteUpdate/' + id, this.options).map(res => res.json());
+  }
+
+
   getAllUpdates() {
     this.createAuthenticationHeaders(); // Create headers
     return this.http.get(this.domain + 'updates/allUpdates', this.options).map(res => res.json());

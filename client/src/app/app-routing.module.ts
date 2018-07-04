@@ -18,6 +18,8 @@ import { UndergraduateProfileComponent } from './components/undergraduate-profil
 import { RepeatFormComponent } from './components/repeat-form/repeat-form.component';
 import { EditRepeatComponent } from './components/repeat-form/edit-repeat/edit-repeat.component';
 import { DeleteRepeatComponent } from './components/repeat-form/delete-repeat/delete-repeat.component';
+import { EditUpdateComponent } from './components/updates/edit-update/edit-update.component';
+import { DeleteUpdateComponent } from './components/updates/delete-update/delete-update.component';
 
 // Our Array of Angular 2 Routes
 const appRoutes: Routes = [
@@ -73,6 +75,16 @@ const appRoutes: Routes = [
   {
     path: 'updates',
     component: UpdatesComponent, 
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'edit-update/:id',
+    component: EditUpdateComponent, 
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'delete-update/:id',
+    component: DeleteUpdateComponent, 
     canActivate: [AuthGuard]
   },
   {

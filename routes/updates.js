@@ -76,5 +76,155 @@ module.exports = (router) => {
     }).sort({ '_id': -1 }); // Sort updates from newest to oldest
   });
 
+
+  /* ===============================================================
+     GET SINGLE Update
+  =============================================================== */
+  router.get('/singleUpdate/:id', (req, res) => {
+    // Check if id is present in parameters
+    if (!req.params.id) {
+      res.json({ success: false, message: 'No update ID was provided.' }); // Return error message
+    } else {
+      // Check if the update id is found in database
+      Update.findOne({ _id: req.params.id }, (err, update) => {
+        // Check if the id is a valid ID
+        if (err) {
+          res.json({ success: false, message: 'Not a valid update id' }); // Return error message
+        } else {
+          // Check if update was found by id
+          if (!update) {
+            res.json({ success: false, message: 'Update not found.' }); // Return error message
+          } else {
+            // Find the current user that is logged in
+            User.findOne({ _id: req.decoded.userId }, (err, user) => {
+              // Check if error was found
+              if (err) {
+                res.json({ success: false, message: err }); // Return error
+              } else {
+                // Check if username was found in database
+                if (!user) {
+                  res.json({ success: false, message: 'Unable to authenticate user' }); // Return error message
+                } else {
+                  // Check if the user who requested single update is the one who created it
+                  if (user.username !== update.createdBy) {
+                    res.json({ success: false, message: 'You are not authorized to eidt this update.' }); // Return authentication reror
+                  } else {
+                    res.json({ success: true, update: update }); // Return success
+                  }
+                }
+              }
+            });
+          }
+        }
+      });
+    }
+  });
+
+  /* ===============================================================
+     UPDATE Update POST
+  =============================================================== */
+  router.put('/updateUpdate', (req, res) => {
+    // Check if id was provided
+    if (!req.body._id) {
+      res.json({ success: false, message: 'No update id provided' }); // Return error message
+    } else {
+      // Check if id exists in database
+      Update.findOne({ _id: req.body._id }, (err, update) => {
+        // Check if id is a valid ID
+        if (err) {
+          res.json({ success: false, message: 'Not a valid update id' }); // Return error message
+        } else {
+          // Check if id was found in the database
+          if (!update) {
+            res.json({ success: false, message: 'Update id was not found.' }); // Return error message
+          } else {
+            // Check who user is that is requesting update update
+            User.findOne({ _id: req.decoded.userId }, (err, user) => {
+              // Check if error was found
+              if (err) {
+                res.json({ success: false, message: err }); // Return error message
+              } else {
+                // Check if user was found in the database
+                if (!user) {
+                  res.json({ success: false, message: 'Unable to authenticate user.' }); // Return error message
+                } else {
+                  // Check if user logged in the the one requesting to update update post
+                  if (user.username !== update.createdBy) {
+                    res.json({ success: false, message: 'You are not authorized to edit this update post.' }); // Return error message
+                  } else {
+                    update.title = req.body.title; // Save latest update title
+                    update.body = req.body.body; // Save latest update body
+                    update.save((err) => {
+                      if (err) {
+                        if (err.errors) {
+                          res.json({ success: false, message: 'Please ensure form is filled out properly' });
+                        } else {
+                          res.json({ success: false, message: err }); // Return error message
+                        }
+                      } else {
+                        res.json({ success: true, message: 'Update Changed Successfully!' }); // Return success message
+                      }
+                    });
+                  }
+                }
+              }
+            });
+          }
+        }
+      });
+    }
+  });
+
+  /* ===============================================================
+     DELETE UPDATE POST
+  =============================================================== */
+  router.delete('/deleteUpdate/:id', (req, res) => {
+    // Check if ID was provided in parameters
+    if (!req.params.id) {
+      res.json({ success: false, message: 'No id provided' }); // Return error message
+    } else {
+      // Check if id is found in database
+      Update.findOne({ _id: req.params.id }, (err, update) => {
+        // Check if error was found
+        if (err) {
+          res.json({ success: false, message: 'Invalid id' }); // Return error message
+        } else {
+          // Check if update was found in database
+          if (!update) {
+            res.json({ success: false, messasge: 'Update was not found' }); // Return error message
+          } else {
+            // Get info on user who is attempting to delete post
+            User.findOne({ _id: req.decoded.userId }, (err, user) => {
+              // Check if error was found
+              if (err) {
+                res.json({ success: false, message: err }); // Return error message
+              } else {
+                // Check if user's id was found in database
+                if (!user) {
+                  res.json({ success: false, message: 'Unable to authenticate user.' }); // Return error message
+                } else {
+                  // Check if user attempting to delete update is the same user who originally posted the update
+                  if (user.username !== update.createdBy) {
+                    res.json({ success: false, message: 'You are not authorized to delete this update' }); // Return error message
+                  } else {
+                    // Remove the update from database
+                    update.remove((err) => {
+                      if (err) {
+                        res.json({ success: false, message: err }); // Return error message
+                      } else {
+                        res.json({ success: true, message: 'Update deleted!' }); // Return success message
+                      }
+                    });
+                  }
+                }
+              }
+            });
+          }
+        }
+      });
+    }
+  });
+
+
   return router;
 };

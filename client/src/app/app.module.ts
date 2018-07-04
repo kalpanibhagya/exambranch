@@ -31,6 +31,8 @@ import { EditExamComponent } from './components/exams/edit-exam/edit-exam.compon
 import { DeleteExamComponent } from './components/exams/delete-exam/delete-exam.component';
 import { EditRepeatComponent } from './components/repeat-form/edit-repeat/edit-repeat.component';
 import { DeleteRepeatComponent } from './components/repeat-form/delete-repeat/delete-repeat.component';
+import { EditUpdateComponent } from './components/updates/edit-update/edit-update.component';
+import { DeleteUpdateComponent } from './components/updates/delete-update/delete-update.component';
 
 //import { FlashMessagesModule } from 'angular2-flash-messages';
 
@@ -55,7 +57,9 @@ import { DeleteRepeatComponent } from './components/repeat-form/delete-repeat/de
     EditExamComponent,
     DeleteExamComponent,
     EditRepeatComponent,
-    DeleteRepeatComponent
+    DeleteRepeatComponent,
+    EditUpdateComponent,
+    DeleteUpdateComponent
   ],
   imports: [
     BrowserModule,
