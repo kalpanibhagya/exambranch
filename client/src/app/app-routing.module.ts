@@ -16,6 +16,8 @@ import { RepeatersComponent } from './components/repeaters/repeaters.component';
 import { UsersComponent } from './components/users/users.component';
 import { UndergraduateProfileComponent } from './components/undergraduate-profile/undergraduate-profile.component';
 import { RepeatFormComponent } from './components/repeat-form/repeat-form.component';
+import { EditRepeatComponent } from './components/repeat-form/edit-repeat/edit-repeat.component';
+import { DeleteRepeatComponent } from './components/repeat-form/delete-repeat/delete-repeat.component';
 
 // Our Array of Angular 2 Routes
 const appRoutes: Routes = [
@@ -47,6 +49,16 @@ const appRoutes: Routes = [
     path: 'repeaters',
     component: RepeatersComponent, // Dashboard Route,
     canActivate: [AuthGuard] // User must be logged in to view this route
+  },
+  {
+    path: 'edit-repeat/:id',
+    component: EditRepeatComponent, // Dashboard Route,
+    canActivate: [AuthGuard] // User must be logged in to view this route
+  },
+  {
+    path: 'delete-repeat/:id',
+    component: DeleteRepeatComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path: 'users',

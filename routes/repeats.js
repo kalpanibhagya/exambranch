@@ -78,7 +78,7 @@ module.exports = (router) => {
 
     /* ===============================================================
      GET SINGLE repeat
-  =============================================================== 
+  =============================================================== */
   router.get('/singleRepeat/:id', (req, res) => {
     // Check if id is present in parameters
     if (!req.params.id) {
@@ -106,7 +106,7 @@ module.exports = (router) => {
                 } else {
                   // Check if the user who requested single repeat is the one who created it
                   if (user.username !== repeat.createdBy) {
-                    res.json({ success: false, message: 'You are not authorized to eidt this repeat.' }); // Return authentication reror
+                    res.json({ success: false, message: 'You are not authorized to edit this repeat.' }); // Return authentication reror
                   } else {
                     res.json({ success: true, repeat: repeat }); // Return success
                   }
@@ -121,7 +121,7 @@ module.exports = (router) => {
 
   /* ===============================================================
      UPDATE repeat POST
-  =============================================================== 
+  =============================================================== */
   router.put('/updateRepeat', (req, res) => {
     // Check if id was provided
     if (!req.body._id) {
@@ -173,10 +173,10 @@ module.exports = (router) => {
       });
     }
   });
-*/
+
     /* ===============================================================
      DELETE Repeat POST
-  =============================================================== 
+  =============================================================== */
   router.delete('/deleteRepeat/:id', (req, res) => {
     // Check if ID was provided in parameters
     if (!req.params.id) {
@@ -223,7 +223,7 @@ module.exports = (router) => {
       });
     }
   });
-*/
+
     
     return router;
 };

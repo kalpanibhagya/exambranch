@@ -1,35 +1,28 @@
 
-    <div class="panel panel-default">
+    <button type="button" name="button" (click)="downloadPDF()" class="btn btn-primary">Export as PDF</button>                    
+    <br/>
+    <br/>
+    
+    <div class="panel panel-default" id="content" #content>
         <div class="panel-body">
   
       <!-- Panel Start -->
     <div>
             <!-- Panel Outer Layer -->
-            <div class="panel panel-primary" *ngFor="let user of users">
+            <div class="panel panel-default" *ngFor="let user of users">
                 
-                    <!-- Panel Title -->
-                    <div class="panel-heading">
-                      <h3 class="panel-title">{{ user.username }}</h3>
-                    </div>
                 
                     <!-- Panel Body -->
                     <div class="panel-body">
-                      {{ user.email }}
+                        Username: {{ user.username }}
+                        <br/>
+                        Email: {{ user.email }}
                     </div>
           
-              <!-- Panel Footer Start -->
-              <div class="panel-footer">
-                <!-- Edit Button -->
-                <a [routerLink]="['/edit-user/', user._id]"><button type="button" name="button" class="btn btn-sm btn-info">Edit</button></a>
-                <!-- Delete Button -->
-                <a [routerLink]="['/delete-user/', user._id]"><button type="button" name="button" class="btn btn-sm btn-danger">Delete</button></a>
-          
-                
-          
-              </div>
-              <!-- Panel Footer End -->
+                    
     </div>
     <!-- Panel End -->
     </div>
     </div>
+    
     

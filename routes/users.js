@@ -3,9 +3,6 @@ const jwt = require('jsonwebtoken'); // Compact, URL-safe means of representing 
 const config = require('../config/database'); // Import database configuration
 
 module.exports = (router) => {
-
-   
-
   /* ===============================================================
      GET ALL USERS
   =============================================================== */
@@ -23,7 +20,7 @@ module.exports = (router) => {
           res.json({ success: true, users: users }); // Return success and users array
         }
       }
-    })
+    }).sort({ '_id': -1 });
   });
 
   return router;

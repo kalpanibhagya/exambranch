@@ -25,12 +25,6 @@ export class UserService {
     });
   }
 
-  /* Function to create a new exam post
-  newExam(exam) {
-    this.createAuthenticationHeaders(); // Create headers
-    return this.http.post(this.domain + 'exams/newExam', exam, this.options).map(res => res.json());
-  }*/
-
 
   getAllUsers() {
     this.createAuthenticationHeaders(); // Create headers
